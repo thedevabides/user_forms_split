@@ -1,0 +1,5 @@
+services:
+  user_forms_split.route_subscriber:
+    class: Drupal\user_forms_split\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

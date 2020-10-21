@@ -1,0 +1,9 @@
+name: 'User forms split'
+type: module
+package: Careerforce
+description: 'Splits out user password and email change into separate forms'
+core: 8.x
+
+dependencies:
+  - ids
+  - user_policies

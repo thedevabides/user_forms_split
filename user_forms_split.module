@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Drupal core hooks and global functions.
+ */
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function user_forms_split_entity_type_alter(array &$entity_types) {
+  $entity_types['user']->setFormClass('edit', 'Drupal\user_forms_split\Form\UserEditProfileForm');
+
+  // Override user entity route provider with extended class.
+  $route_providers = $entity_types['user']->getRouteProviderClasses();
+  $route_providers['html'] = '\Drupal\user_forms_split\UserFormsRouteProvider';
+  $entity_types['user']->setHandlerClass('route_provider', $route_providers);
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function user_forms_split_element_info_alter(array &$info) {
+  if (isset($info['password_confirm'])) {
+    $info['password_confirm']['#process'][] = 'user_forms_password_confirm_process';
+  }
+}
+
+/**
+ * Process callback function.
+ */
+function user_forms_password_confirm_process($element) {
+  if ($element['#array_parents'][0] == 'account') {
+    $element['pass1']['#title'] = 'New password';
+    $element['pass2']['#title'] = 'Confirm new password';
+  }
+
+  return $element;
+}

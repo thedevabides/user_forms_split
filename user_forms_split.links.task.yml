@@ -1,0 +1,11 @@
+user_forms_split.user.password:
+  title: Reset Password
+  route_name: user_forms_split.user.password
+  base_route: entity.user.canonical
+  weight: 200
+
+user_forms_split.user.email:
+  title: Reset Email
+  route_name: user_forms_split.user.email
+  base_route: entity.user.canonical
+  weight: 200

@@ -1,0 +1,27 @@
+user_forms_split.user.password:
+  path: '/user/{user}/password'
+  defaults:
+    _title_callback: '\Drupal\user_forms_split\Form\UserEditPasswordForm::formPageTitle'
+    _form: '\Drupal\user_forms_split\Form\UserEditPasswordForm'
+  options:
+    _admin_route: FALSE
+    parameters:
+      user:
+        type: entity:user
+  requirements:
+    user: \d+
+    _entity_access: user.update
+
+user_forms_split.user.email:
+  path: '/user/{user}/email'
+  defaults:
+    _title_callback: '\Drupal\user_forms_split\Form\UserEditEmailForm::formPageTitle'
+    _form: '\Drupal\user_forms_split\Form\UserEditEmailForm'
+  options:
+    _admin_route: FALSE
+    parameters:
+      user:
+        type: entity:user
+  requirements:
+    user: \d+
+    _entity_access: user.update
